@@ -16,6 +16,7 @@
     - cria_subnets
     - cria_sg
     - cria_igw
-#    - cria_rt
+    - cria_rt
+    - cria_ec2
 
 

@@ -1,20 +1,2 @@
-- name: Criando EC2 instance
-  amazon.aws.ec2_instance:
-    key_name: "{{ key_name }}"
-    instance_type: "{{ instance_type }}"
-    image:
-      id: "{{ id_image }}"
-    vpc_subnet_id: "{{ public_subnet.subnet.id }}"
-    region: "{{ aws_vars.aws.common.region }}"
-    state: present
-    network:
-      assign_public_ip: true
-    security_group: "{{ web_sg.group_id }}"
-    aws_access_key: "{{ AWS_ACCESS_KEY_ID }}"
-    aws_secret_key: "{{ AWS_SECRET_ACCESS_KEY }}"
-    name: "{{ ec2_name }}"
-    tags:
-      Name: ec2_webserver
-      ambiente: bootcamp
-    wait_timeout: 1200
-  register: ec2_bootcamp
+
+em elaboração

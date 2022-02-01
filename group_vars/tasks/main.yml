@@ -12,7 +12,7 @@ aws_vars:
       subnet:
         subnet1:
           tags:
-            Name: public-a
+            Name: public_a
           cidr: 10.1.1.0/24
           zone: a
         subnet2:
@@ -40,8 +40,19 @@ aws_vars:
             - dest: 0.0.0.0/0
               gateway_id: igw
       security_group:
-        name: SG-WEB
+        name: SG_WEB
         tags:
           Name: SG-http-ssh
           Curso: Cloudtreinamento
-        
+      ec2:
+        ami_image: ami-0a8b4cd432b1c3063 
+        key_name: modulo-7
+        security_group:
+          - SG_WEB       
+        instance_type: t2.micro
+        subnet: publica-a
+        tags:
+          Name: app1-cloudbootcamp
+          Ambiente: bootcampcloudtreinamento
+
+            

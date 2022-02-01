@@ -20,7 +20,3 @@
         rule_desc: allow all on port 80
     state: present
   register: web_sg
-
-- name: Web Security group ID
-  debug:
-    var: web_sg['group_id']

@@ -1,0 +1,19 @@
+  - name: Configurando tabela de rota de sub-rede pública
+    ec2_vpc_route_table:
+      aws_access_key: "{{ AWS_ACCESS_KEY_ID }}"
+      aws_secret_key: "{{ AWS_SECRET_ACCESS_KEY }}"
+      vpc_id: "{{ vpc_net.vpc.id }}"
+      region: "{{ aws_vars.aws.common.region }}"
+      tags:
+        Name: "{{ item.value.name }}"
+      subnets: "{{ item.value.subnets }}"
+      routes: >-
+        {%- if item.value.routes|length == 1 -%}
+          {{ item.value.routes }}
+        {%- else -%}
+          {{ item.value.routes | join(',') }}
+        {%- endif -%}
+    with_dict: "{{ aws_vars.aws.vpc.route_table }}"    
+    register: public_route_table
+
+#  - debug: var=public_route_table

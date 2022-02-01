@@ -8,3 +8,5 @@
     tags: "{{ item.value.tags }}"
   with_dict: "{{ aws_vars.aws.vpc.subnet }}"
   register: vpc_subnet
+
+- debug: var=vpc_subnet
