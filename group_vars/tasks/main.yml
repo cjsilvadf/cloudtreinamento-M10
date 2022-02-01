@@ -1,0 +1,41 @@
+---
+vars:
+  aws:
+    common:
+      region: us-east-1
+    vpc:
+      name: AnsibleVPC
+      cidr_block: 10.1.0.0/16
+      tags:
+        tag1: tag1
+        tag2: tag2
+      subnet:
+        subnet1:
+          tags:
+            Name: public-a
+          cidr: 10.1.1.0/24
+          zone: a
+        subnet2:
+          tags:
+            Name: public-c
+          cidr: 10.1.2.0/24
+          zone: c
+        subnet3:
+          tags:
+            Name: private-a
+          cidr: 10.1.3.0/24
+          zone: a
+        subnet4:
+          tags:
+            Name: private-c
+          cidr: 10.1.4.0/24
+          zone: c
+      route_table:
+        public:
+          name: public
+          subnets:
+            - 10.1.1.0/24
+            - 10.1.2.0/24
+          routes:
+            - dest: 0.0.0.0/0
+              gateway_id: igw
