@@ -1,0 +1,10 @@
+- name: Criando VPC
+  amazon.aws.ec2_vpc_net:
+    aws_access_key: "{{ AWS_ACCESS_KEY_ID }}"
+    aws_secret_key: "{{ AWS_SECRET_ACCESS_KEY }}"
+    state: present
+    region: "{{ my_vars.aws.common.region }}"
+    cidr_block: "{{ my_vars.aws.vpc.cidr_block }}"
+    name: "{{ my_vars.aws.vpc.name }}"
+    tags: "{{ my_vars.aws.vpc.tags }}"
+  register: vpc_net
