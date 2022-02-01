@@ -46,13 +46,13 @@ aws_vars:
           Curso: Cloudtreinamento
       ec2:
         ami_image: ami-0a8b4cd432b1c3063 
-        key_name: modulo-7
+        key_name: NAME KEY PAR
         security_group:
           - SG_WEB       
         instance_type: t2.micro
         subnet: publica-a
         tags:
-          Name: app1-cloudbootcamp
-          Ambiente: bootcampcloudtreinamento
+          Name: app1
+          Ambiente: CLOUD
 
             
