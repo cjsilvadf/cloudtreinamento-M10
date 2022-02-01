@@ -1,11 +1,26 @@
-  - name: Criando Internet gateway para vpc "{{ vpc_net.vpc.id }}"
-    ec2_vpc_igw:
-      aws_access_key: "{{ AWS_ACCESS_KEY_ID }}"
-      aws_secret_key: "{{ AWS_SECRET_ACCESS_KEY }}"
-      region: "{{ vars.aws.common.region }}"
-      vpc_id: "{{ vpc_net.vpc.id }}"
-      state: present
-      tags:
-        Name: "{{ igw_name }}"
-    register: igw
-#  - debug: var=igw
+- name: Criando Security group
+  amazon.aws.ec2_group:
+    aws_access_key: "{{ AWS_ACCESS_KEY_ID }}"
+    aws_secret_key: "{{ AWS_SECRET_ACCESS_KEY }}"
+    name: "{{ aws_vars.aws.vpc.security_group.name }}-ssh"
+    description: Security group for SSH
+    vpc_id: "{{ vpc_net.vpc.id }}"
+    region: "{{ aws_vars.aws.common.region }}"
+    tags: "{{ aws_vars.aws.vpc.security_group.tags }}"
+    rules:
+      - proto: tcp
+        ports:
+          - 22
+        cidr_ip: 0.0.0.0/0
+        rule_desc: allow all on port 22
+      - proto: tcp
+        ports:
+          - 80
+        cidr_ip: 0.0.0.0/0
+        rule_desc: allow all on port 80
+    state: present
+  register: web_sg
+
+- name: Web Security group ID
+  debug:
+    var: web_sg['group_id']

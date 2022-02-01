@@ -1,0 +1,8 @@
+- name: Internet Gateway
+  ec2_vpc_igw:
+    region: "{{ aws_vars.aws.common.region }}"
+    vpc_id: "{{ vpc_net.vpc.id }}"
+    state: present
+  register: igw
+
+- debug: var=igw
